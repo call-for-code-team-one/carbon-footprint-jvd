@@ -1,0 +1,33 @@
+<html>
+
+<body>
+<style>
+body {
+      background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('https://www.duurzaamthuis.nl/wp-content/uploads/2020/11/ecological-footprint--1024x576.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  color: black;
+  font-family: IBM Plex Sans;
+  padding: 10px 5px;
+  text-align: center;
+
+}
+</style>
+<div>
+<h1>My Carbon Footprint</h1>
+    <img src={{url_chart}}  height="250" width="250">
+    <p style = "font-family:IBM plex">
+      </p>
+      <p>
+    </p>
+    <h2 >Please use the form below to either go to the barcode scanner module or input your weekly footprint</h2>
+    <form action="/upload" name="Barcode Scanner App" style="font-family:IBM plex">
+    <input type="submit" value="Barcode Scanner App" />
+    </form>
+    <form action="/spendings_form" name="Weekly Footprint Calculator" style="font-family:IBM plex" >
+    <input type="submit" value="Spending habits calculator" />
+    </form>
+</div>
+</body>
+</html>
