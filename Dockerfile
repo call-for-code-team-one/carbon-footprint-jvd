@@ -1,18 +1,14 @@
-FROM python:3.9
+FROM python:3.9-alpine
 
 COPY requirements.txt requirements.txt
 
 WORKDIR /carbon_footprint_app-jvd
 
-RUN apk --update add python py-pip openssl ca-certificates py-openssl wget bash linux-headers
-RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-dev py-pip build-base \
-  && pip install --upgrade pip \
-  && pip install --upgrade pipenv\
-  && pip install --upgrade -r requirements.txt\
-  && apk del build-dependencies
-
-COPY . /app
-
-ENTRYPOINT [ "python" ]
-
-CMD [ "app.py" ]
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 5000
+COPY . .
+CMD ["flask", "run"]
