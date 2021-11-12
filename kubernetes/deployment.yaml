@@ -1,0 +1,42 @@
+# Update <REGISTRY> <NAMESPACE> values before use
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carbon_footprint_app-jvd
+  labels:
+    app: carbon_footprint_app-jvd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carbon_footprint_app-jvd
+  template:
+    metadata:
+      labels:
+        app: carbon_footprint_app-jvd
+    spec:
+      containers:
+      - name: carbon_footprint_app-jvd
+        image: <REGISTRY>/<NAMESPACE>/myapp:v1.0.0
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always
+        env:
+        - name: CLOUDANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: cloudant
+              key: url
+              optional: true
+        - name: CLOUDANT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: cloudant
+              key: username
+              optional: true
+        - name: CLOUDANT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cloudant
+              key: password
+              optional: true
