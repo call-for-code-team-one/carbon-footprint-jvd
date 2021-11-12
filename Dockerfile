@@ -9,7 +9,7 @@ RUN pip install --upgrade cython
 RUN pip install setuptools wheel
 RUN apk add --no-cache gcc musl-dev linux-headers
 RUN apk add --no-cache jpeg-dev zlib-dev
-RUN pip install python3-pandas
+RUN pip install pandas
 RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
     && pip install Pillow
 COPY requirements.txt requirements.txt
