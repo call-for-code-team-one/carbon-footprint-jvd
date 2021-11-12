@@ -9,11 +9,10 @@ RUN pip install --upgrade cython
 RUN pip install setuptools wheel
 RUN apk add --no-cache gcc musl-dev linux-headers
 RUN apk add --no-cache jpeg-dev zlib-dev
-RUN apt-get update && \
-    apt-get -y install python3-pandas
+RUN apk-get update && \
+    apk-get -y install python3-pandas
 RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
     && pip install Pillow
-RUN apt-get update -y
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 RUN echo -e '@edgunity http://nl.alpinelinux.org/alpine/edge/community\n\
