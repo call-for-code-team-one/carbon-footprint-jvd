@@ -7,9 +7,10 @@ ENV FLASK_RUN_HOST=0.0.0.0
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install setuptools wheel
+RUN apk add gcc g++ linux-headers musl-dev git && pip3 install --upgrade pip
+&& pip3 install git+https://github.com/pandas-dev/pandas
 RUN apk add --no-cache gcc musl-dev linux-headers
 RUN apk add --no-cache jpeg-dev zlib-dev
-RUN pip install pandas
 RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
     && pip install Pillow
 COPY requirements.txt requirements.txt
@@ -95,4 +96,4 @@ RUN mkdir -p /opt/opencv-${OPENCV_VERSION}/build && \
   rm -rf /opt/opencv-${OPENCV_VERSION}
 EXPOSE 5000
 COPY . .
-CMD ["flask", "run"]
+CMD ["flask", "run","app.py"]
