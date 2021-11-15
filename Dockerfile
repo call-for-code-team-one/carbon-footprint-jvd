@@ -39,8 +39,6 @@ RUN apk add --update --no-cache \
       # Portable Network Graphics library
       libpng-dev \
 
-      # A software-based implementation of the codec specified in the emerging JPEG-2000 Part-1 standard (development files)
-      jasper-dev \
 
       # Provides support for the Tag Image File Format or TIFF (development files)
       tiff-dev \
