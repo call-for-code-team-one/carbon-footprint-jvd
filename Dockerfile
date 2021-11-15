@@ -14,15 +14,6 @@ RUN echo -e '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing\n\
 http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 
 RUN apk add -U \
-      # --virtual .runtime-dependencies \
-        #Intel® TBB, a widely used C++ template library for task parallelism'
-        libtbb@testing \
-        libtbb-dev@testing \
-        # Wrapper for libjpeg-turbo
-        libjpeg  \
-        openblas \
-        jasper \
-    && apk add -U \
       --virtual .build-dependencies \
         build-base \
         openblas-dev \
