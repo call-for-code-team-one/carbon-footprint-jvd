@@ -34,14 +34,10 @@ RUN apk add -U \
         # Portable Network Graphics library
         libpng-dev \
         # A software-based implementation of the codec specified in the emerging JPEG-2000 Part-1 standard (development files)
-        jasper-dev \
         # Provides support for the Tag Image File Format or TIFF (development files)
         tiff-dev \
         # Libraries for working with WebP images (development files)
         libwebp-dev \
-        # A C language family front-end for LLVM (development files)
-        clang-dev \
-        linux-headers \
     && pip install numpy \
     && mkdir /opt \
     && cd /opt \
