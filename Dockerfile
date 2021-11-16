@@ -30,13 +30,13 @@ RUN apk add -U \
         # Libraries for working with WebP images (development files)
         libwebp-dev \
     && pip install numpy \
-    && mkdir /opt \
-    && cd /opt \
+    && mkdir /carbon_footprint_app-jvd \
+    && cd /carbon_footprint_app-jvd \
     && wget --quiet https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
     && unzip ${OPENCV_VERSION}.zip \
     && rm -rf ${OPENCV_VERSION}.zip \
-    && mkdir -p /opt/opencv-${OPENCV_VERSION}/build \
-    && cd /opt/opencv-${OPENCV_VERSION}/build \
+    && mkdir -p /carbon_footprint_app-jvd/opencv-${OPENCV_VERSION}/build \
+    && cd /carbon_footprint_app-jvd/opencv-${OPENCV_VERSION}/build \
     && cmake \
       -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=/usr/local \
@@ -60,7 +60,7 @@ RUN apk add -U \
     && make VERBOSE=1 \
     && make \
     && make install \
-    && rm -rf /opt/opencv-${OPENCV_VERSION} \
+    && rm -rf /carbon_footprint_app-jvd/opencv-${OPENCV_VERSION} \
     && apk del .build-dependencies \
     && rm -rf /var/cache/apk/*
 COPY requirements.txt requirements.txt
