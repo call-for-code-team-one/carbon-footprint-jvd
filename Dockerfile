@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y python3-opencv
 RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN apt-get update && \
-    apt-get install apt install libzbar0
+    apt-get install libzbar0
     && pip install pyzbar
 RUN pip install opencv-python
 COPY requirements.txt requirements.txt
