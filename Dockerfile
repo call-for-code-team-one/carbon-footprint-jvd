@@ -1,9 +1,8 @@
 FROM python:3.9
-
+MAINTANER Joëlle Van Damme "joelle.van.damme@be.ey.com"
 WORKDIR /carbon_footprint_app-jvd/build
 
 ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install setuptools wheel
@@ -60,6 +59,4 @@ RUN apt-get -qq update \
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
-COPY . .
-CMD ["flask", "app"]
+CMD ["app.py"]
