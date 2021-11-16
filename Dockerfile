@@ -55,9 +55,9 @@ RUN apt-get -qq update \
     && rm -rf /app/opencv-${OPENCV_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
-    && apt-get -qq clean \
-    && apt-get install libgl1
-RUN apt install -y libgl1-mesa-glx
+    && apt-get -qq clean
+RUN apt-get update && apt-get install -y python3-opencv
+RUN pip install opencv-python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 ENTRYPOINT [ "python3" ]
