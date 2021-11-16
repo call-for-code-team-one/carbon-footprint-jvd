@@ -1,7 +1,7 @@
 FROM python:3.9
 MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
-WORKDIR /
-
+COPY . /app
+WORKDIR /app
 ENV FLASK_APP=app.py
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
@@ -29,7 +29,7 @@ RUN apt-get -qq update \
         libpq-dev \
     && pip install numpy \
     && wget -q https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip -O opencv.zip \
-    && unzip -qq opencv.zip -d / \
+    && unzip -qq opencv.zip -d /app\
     && rm -rf opencv.zip \
     && cmake \
         -D BUILD_TIFF=ON \
@@ -48,10 +48,11 @@ RUN apt-get -qq update \
         -D PYTHON_EXECUTABLE=$(which python3.9) \
         -D PYTHON_INCLUDE_DIR=$(python3.9 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
         -D PYTHON_PACKAGES_PATH=$(python3.9 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
-        /opencv-${OPENCV_VERSION} \
+        /app/opencv-${OPENCV_VERSION} \
     && make -j$(nproc) \
     && make install \
-    && rm -rf /opencv-${OPENCV_VERSION} \
+    && rm -rf /app/build/* \
+    && rm -rf /app/opencv-${OPENCV_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
     && apt-get -qq clean
