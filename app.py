@@ -6,19 +6,22 @@ APPLICATION FOR DEPLOYING the Carbon Footprint Calculator code in IBM Cloud
 '''-----------------------------
 A. Import necessary libraries 
 -----------------------------'''
-import os
-from pathlib import Path
-from flask import Flask, render_template, request,url_for,redirect
-from werkzeug.utils import secure_filename
-import pandas as pd
-import sqlite3
-from flask_login import LoginManager
 import datetime
+import os
+import sqlite3
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+from flask import Flask, render_template, request
+from flask_login import LoginManager
+from werkzeug.utils import secure_filename
+
 # Internal imports
 from db import init_db_command
-from user_sql import User
 from scripts.barcode_scanner import BarcodeDecoder
-import matplotlib.pyplot as plt
+from user_sql import User
+
 '''-----------------------------
 B. Import Paths 
 -----------------------------'''
