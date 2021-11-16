@@ -51,7 +51,6 @@ RUN apt-get -qq update \
         /opencv-${OPENCV_VERSION} \
     && make -j$(nproc) \
     && make install \
-    && rm -rf /* \
     && rm -rf /opencv-${OPENCV_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
