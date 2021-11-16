@@ -30,7 +30,6 @@ RUN apk add -U \
         # Libraries for working with WebP images (development files)
         libwebp-dev \
     && pip install numpy \
-    && mkdir /carbon_footprint_app-jvd \
     && cd /carbon_footprint_app-jvd \
     && wget --quiet https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
     && unzip ${OPENCV_VERSION}.zip \
