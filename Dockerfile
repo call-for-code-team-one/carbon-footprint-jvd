@@ -1,6 +1,6 @@
 FROM python:3.9
 MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
-WORKDIR /carbon_footprint_app-jvd/build
+WORKDIR /carbon_footprint_app-jvd
 
 ENV FLASK_APP=app.py
 RUN pip install --upgrade pip
@@ -51,7 +51,7 @@ RUN apt-get -qq update \
         /carbon_footprint_app-jvd/opencv-${OPENCV_VERSION} \
     && make -j$(nproc) \
     && make install \
-    && rm -rf /carbon_footprint_app-jvd/build/* \
+    && rm -rf /carbon_footprint_app-jvd/* \
     && rm -rf /carbon_footprint_app-jvd/opencv-${OPENCV_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
