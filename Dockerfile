@@ -57,7 +57,6 @@ RUN apk add -U \
       -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.6/site-packages/numpy/core/include/ \
       .. \
     && make VERBOSE=1 \
-    && make \
     && make install \
     && rm -rf /carbon_footprint_app-jvd/opencv-${OPENCV_VERSION} \
     && apk del .build-dependencies \
