@@ -55,7 +55,7 @@ RUN apt-get -qq update \
     && rm -rf /app/opencv-${OPENCV_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
-    && apt-get -qq clean
+    && apt-get -qq clean \
     && apt-get update && apt-get install libgl1
 RUN apt-get update
 RUN apt install -y libgl1-mesa-glx
