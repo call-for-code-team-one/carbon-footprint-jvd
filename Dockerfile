@@ -57,7 +57,8 @@ RUN apt-get -qq update \
     && apt-get -qq autoremove \
     && apt-get -qq clean
 RUN apt-get update && apt-get install -y python3-opencv
-RUN apt-get update && apt-get install libgl1
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN pip install opencv-python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
