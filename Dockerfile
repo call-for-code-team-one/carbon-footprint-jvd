@@ -1,5 +1,5 @@
 FROM python:3.9
-MAINTANER Joëlle Van Damme "joelle.van.damme@be.ey.com"
+MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
 WORKDIR /carbon_footprint_app-jvd/build
 
 ENV FLASK_APP=app.py
