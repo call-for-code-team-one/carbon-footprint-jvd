@@ -58,5 +58,5 @@ RUN apt-get -qq update \
     && apt-get -qq clean
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-
+ENTRYPOINT [ "python3" ]
 CMD ["app.py"]
