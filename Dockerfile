@@ -63,10 +63,9 @@ RUN apt-get install py3-pip curl bash \
     gcc musl-dev autoconf libffi-dev gmp-dev \
     libxml2 libxslt-dev jpeg-dev zlib-dev \
     build-base python3-dev
-RUN apt-get zbar-dev --update-cache --repository \
-    http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
-
-RUN pip3 install lxml pyzbar pillow
+RUN apt-get update && \
+    apt-get install -y build-essential libzbar-dev && \
+    pip install zbar
 RUN pip install opencv-python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
