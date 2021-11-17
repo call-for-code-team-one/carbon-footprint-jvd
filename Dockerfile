@@ -59,13 +59,9 @@ RUN apt-get -qq update \
 RUN apt-get update && apt-get install -y python3-opencv
 RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6  -y
-RUN apt-get install py3-pip curl bash \
-    gcc musl-dev autoconf libffi-dev gmp-dev \
-    libxml2 libxslt-dev jpeg-dev zlib-dev \
-    build-base python3-dev
 RUN apt-get update && \
-    apt-get install -y build-essential libzbar-dev && \
-    pip install zbar
+    apt-get install -y build-essential libzbar-dev
+RUN pip install zbar
 RUN pip install opencv-python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
