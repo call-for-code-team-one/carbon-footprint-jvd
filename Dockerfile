@@ -62,7 +62,7 @@ RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN apt-get install py3-pip curl bash \
     gcc musl-dev autoconf libffi-dev gmp-dev \
     libxml2 libxslt-dev jpeg-dev zlib-dev \
-    build-base python3-dev linux-headers
+    build-base python3-dev
 RUN apt-get zbar-dev --update-cache --repository \
     http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 
