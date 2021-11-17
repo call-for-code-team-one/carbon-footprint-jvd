@@ -1,7 +1,7 @@
 FROM python:3.9
 MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
 WORKDIR /app
-COPY . /app
+COPY ./app
 
 ENV FLASK_APP=app.py
 RUN pip install --upgrade pip
