@@ -7,9 +7,8 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install setuptools wheel
 
-
-RUN apt-get update && apt-get install -y opencv-python-headless
-RUN pip install opencv-python-headless
+RUN apt-get update && apt-get install -y python3-opencv
+RUN pip install opencv-python
 RUN apt-get update && \
     apt-get install -y build-essential libzbar-dev
 COPY requirements.txt requirements.txt
