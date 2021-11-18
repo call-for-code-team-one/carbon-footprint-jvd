@@ -6,7 +6,8 @@ COPY . /app
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install setuptools wheel
-RUN apt-get install libgl1-mesa-dev -y
+RUN apt-get update -y
+RUN apt-update && apt install -y libsm6 libxext6 
 # Install the dependencies
 RUN apt-get update && \
     apt-get install -y build-essential libzbar-dev
