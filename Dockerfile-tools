@@ -1,7 +1,8 @@
 FROM python:3.9
 MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
 WORKDIR /app
-
+COPY . /app
+COPY ./workspace/source
 ENV FLASK_APP=app.py
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
@@ -66,8 +67,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 5000
 ENTRYPOINT [ "python3" ]
-COPY ./app
-COPY ./workspace/source
+
 COPY run-dev /bin
 RUN chmod 777 /bin/run-dev
 

@@ -1,7 +1,8 @@
 FROM python:3.9
 MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
 WORKDIR /app
-
+COPY . /app
+COPY ./workspace/source
 ENV FLASK_APP=app.py
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
@@ -64,8 +65,7 @@ RUN apt-get update && \
 RUN pip install opencv-python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-COPY ./app
-COPY ./workspace/source
+
 EXPOSE 5000
 ENTRYPOINT [ "python3" ]
 CMD ["python", "manage.py", "start", "0.0.0.0:3000"]
