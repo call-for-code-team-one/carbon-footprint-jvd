@@ -11,6 +11,8 @@ import os
 import sqlite3
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 from flask import Flask, render_template, request
@@ -43,14 +45,13 @@ staticPath = './static'
 '''-----------------------------
 C. App Config 
 -----------------------------'''
-app = Flask(__name__, static_url_path='' )
+app = Flask(__name__)
 port = int( os.getenv( 'PORT', 8000 ) )
 
 # Flask app setup
 app.secret_key = os.urandom(24)
 app.config['UPLOAD_FOLDER'] = uploadPath
 app.config['PICTURE_FOLDER'] = staticPath
-
 # User session management setup
 login_manager = LoginManager()
 login_manager.init_app(app)

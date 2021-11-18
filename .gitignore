@@ -61,5 +61,3 @@ target/
 
 # Mac files
 *.DS_Store
-
-vcap-local.json
