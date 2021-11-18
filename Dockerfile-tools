@@ -1,7 +1,5 @@
 FROM python:3.9
 MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
-COPY ./app
-COPY ./workspace/source
 WORKDIR /app
 
 ENV FLASK_APP=app.py
@@ -68,6 +66,8 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 5000
 ENTRYPOINT [ "python3" ]
+COPY ./app
+COPY ./workspace/source
 COPY run-dev /bin
 RUN chmod 777 /bin/run-dev
 
