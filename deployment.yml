@@ -1,0 +1,84 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: carbon_footprint-jvd
+  labels:
+    app: carbon_footprint-jvd
+spec:
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - carbon_footprint-jvd
+      from:
+        kind: ImageStreamTag
+        name: carbon_footprint-jvd:latest
+    type: ImageChange
+  replicas: 1
+  selector:
+    app: carbon_footprint-jvd
+  template:
+    metadata:
+      labels:
+        app: carbon_footprint-jvd
+    spec:
+      securityContext:
+        runAsUser: 1001
+      containers:
+        - name: carbon_footprint-jvd
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: carbon_footprint-jvd
+  labels:
+    app: carbon_footprint-jvd
+spec:
+  strategy:
+    type: Docker
+  source:
+    type: Git
+    git:
+      uri: "https://github.com/call-for-code-team-one/carbon-footprint-jvd.git"
+      ref: main
+    contextDir: carbon_footprint-jvd
+  output:
+    to:
+      kind: ImageStreamTag
+      name: carbon_footprint-jvd:latest
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: carbon_footprint-jvd
+  labels:
+    app: carbon_footprint-jvd
+spec:
+  to:
+    kind: Service
+    name: carbon_footprint-jvd
+  port:
+    targetPort: 8080
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: carbon_footprint-jvd
+  labels:
+    app: carbon_footprint-jvd
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: carbon_footprint-jvd
+  labels:
+    app: carbon_footprint-jvd
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: carbon_footprint-jvd
+  type: ClusterIP
