@@ -61,6 +61,14 @@ RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN apt-get update && \
     apt-get install -y build-essential libzbar-dev
+RUN apt-get install py3-pip curl bash \
+    gcc musl-dev autoconf libffi-dev gmp-dev \
+    libxml2 libxslt-dev jpeg-dev zlib-dev \
+    build-base python3-dev
+RUN apt-get update && \
+    apt-get install apt install libzbar0
+    apt-get install libzbar0
+    && pip install pyzbar
 RUN pip install zbar
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
