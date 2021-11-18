@@ -1,5 +1,5 @@
----
 applications:
  - name: carbon_footprint_app_jvd
    random-route: true
    memory: 128M
+   command : python app.py
