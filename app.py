@@ -39,11 +39,13 @@ except OSError as error:
 uploadPath = './tmp'
 staticPath = './static'
 
-#DataBase for reporting
+
 '''-----------------------------
 C. App Config 
 -----------------------------'''
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='' )
+port = int( os.getenv( 'PORT', 8000 ) )
+
 # Flask app setup
 app.secret_key = os.urandom(24)
 app.config['UPLOAD_FOLDER'] = uploadPath

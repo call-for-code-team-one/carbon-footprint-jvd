@@ -1,0 +1,4 @@
+---
+applications:
+ - name: carbon_footprint-jvd
+   memory: 128M
