@@ -66,6 +66,7 @@ RUN pip3 install lxml pyzbar pillow
 RUN apt-get update && \
     apt-get install -y build-essential libzbar-dev && \
     pip install zbar
+RUN pip install pyzbar
 RUN pip install opencv-python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
