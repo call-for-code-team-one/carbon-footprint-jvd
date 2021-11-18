@@ -43,5 +43,6 @@ debug-cmd : "python manage.py debug"
 stop-cmd : ""
 
 # The relative path to the helm chart used for Kubernetes deployment
-chart-path : "chart/flaskstarter"
+chart-path : "chart/carbon_footprint_app-jvd"
+chart-temp : "chart/carbon_footprint_app-jvd"
 
