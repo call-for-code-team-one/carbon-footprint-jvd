@@ -28,3 +28,4 @@ countryinfo~=0.1.2
 Flask~=2.0.2
 Flask-Login~=0.5.0
 opencv-python~=4.5.1
+cv2==1.0
