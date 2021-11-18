@@ -57,7 +57,8 @@ RUN apt-get -qq update \
     && apt-get -qq autoremove \
     && apt-get -qq clean
 RUN apt-get update
-RUN apt install -y libgl1-mesa-glx
+RUN apt-get update && apt-get install -y opencv-python-headless
+RUN pip install opencv-python-headless
 RUN apt-get update && \
     apt-get install -y build-essential libzbar-dev
 COPY requirements.txt requirements.txt
