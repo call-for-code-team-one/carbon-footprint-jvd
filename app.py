@@ -7,9 +7,8 @@ APPLICATION FOR DEPLOYING the Carbon Footprint Calculator code in IBM Cloud
 A. Import necessary libraries 
 -----------------------------'''
 import datetime
-import os
 import sqlite3
-from pathlib import Path
+import numpy as np
 
 import matplotlib
 matplotlib.use("Agg")
@@ -19,7 +18,8 @@ from flask import Flask, render_template, request
 from flask_login import LoginManager
 from werkzeug.utils import secure_filename
 # Importing library
-import cv2
+import math
+from PIL import Image, ImageDraw
 import pandas as pd
 import os
 from geopy.geocoders import Nominatim
@@ -129,8 +129,8 @@ def compute_product_distance(target_location,user_location):
 # Make one method to decode the barcode
 def BarcodeReader(image):
     # read the image in numpy array using cv2
-    img = cv2.imread(image)
-
+    #img = cv2.imread(image)
+    img = np.array(Image.open(image))
     # Decode the barcode image
     detectedBarcodes = decode(img)
 
@@ -149,9 +149,11 @@ def BarcodeReader(image):
 
             # Put the rectangle in image using
             # cv2 to heighlight the barcode
-            cv2.rectangle(img, (x - 10, y - 10),
+            # create  rectangleimage
+            '''cv2.rectangle(img, (x - 10, y - 10),
                           (x + w + 10, y + h + 10),
-                          (255, 0, 0), 2)
+                          (255, 0, 0), 2)'''
+            #img1
 
             if barcode.data != "":
                 # Print the barcode data
