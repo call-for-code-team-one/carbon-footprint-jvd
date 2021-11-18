@@ -7,61 +7,37 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install setuptools wheel
 
-ENV OPENCV_VERSION="4.5.1"
-
-RUN apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends \
-        build-essential \
-        cmake \
-        git \
-        wget \
-        unzip \
-        yasm \
-        pkg-config \
-        libswscale-dev \
-        libtbb2 \
-        libtbb-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libtiff-dev \
-        libopenjp2-7-dev \
-        libavformat-dev \
-        libpq-dev \
-    && pip install numpy \
-    && wget -q https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip -O opencv.zip \
-
-
-
-
-
-
-    && unzip -qq opencv.zip -d /opt \
-    && rm -rf opencv.zip \
-    && cmake \
-        -D BUILD_TIFF=ON \
-        -D BUILD_opencv_java=OFF \
-        -D WITH_CUDA=OFF \
-        -D WITH_OPENGL=ON \
-        -D WITH_OPENCL=ON \
-        -D WITH_IPP=ON \
-        -D WITH_TBB=ON \
-        -D WITH_EIGEN=ON \
-        -D WITH_V4L=ON \
-        -D BUILD_TESTS=OFF \
-        -D BUILD_PERF_TESTS=OFF \
-        -D CMAKE_BUILD_TYPE=RELEASE \
-        -D CMAKE_INSTALL_PREFIX=$(python3.9 -c "import sys; print(sys.prefix)") \
-        -D PYTHON_EXECUTABLE=$(which python3.9) \
-        -D PYTHON_INCLUDE_DIR=$(python3.9 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
-        -D PYTHON_PACKAGES_PATH=$(python3.9 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
-        /opt/opencv-${OPENCV_VERSION} \
-    && make -j$(nproc) \
-    && make install \
-    && rm -rf /opt/build/* \
-    && rm -rf /opt/opencv-${OPENCV_VERSION} \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get -qq autoremove \
-    && apt-get -qq clean
+ENV OPENCV_VERSION="4.1.1"
+# install opencv-python from its source
+RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
+&& unzip ${OPENCV_VERSION}.zip \
+&& mkdir /opencv-${OPENCV_VERSION}/cmake_binary \
+&& cd /opencv-${OPENCV_VERSION}/cmake_binary \
+&& cmake -DBUILD_TIFF=ON \
+  -DBUILD_opencv_java=OFF \
+  -DWITH_CUDA=OFF \
+  -DWITH_OPENGL=ON \
+  -DWITH_OPENCL=ON \
+  -DWITH_IPP=ON \
+  -DWITH_TBB=ON \
+  -DWITH_EIGEN=ON \
+  -DWITH_V4L=ON \
+  -DBUILD_TESTS=OFF \
+  -DBUILD_PERF_TESTS=OFF \
+  -DCMAKE_BUILD_TYPE=RELEASE \
+  -DCMAKE_INSTALL_PREFIX=$(python3.7 -c "import sys; print(sys.prefix)") \
+  -DPYTHON_EXECUTABLE=$(which python3.7) \
+  -DPYTHON_INCLUDE_DIR=$(python3.7 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
+  -DPYTHON_PACKAGES_PATH=$(python3.7 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
+  .. \
+&& make install \
+&& rm /${OPENCV_VERSION}.zip \
+&& rm -r /opencv-${OPENCV_VERSION}
+RUN ln -s \
+  /usr/local/python/cv2/python-3.7/cv2.cpython-37m-x86_64-linux-gnu.so \
+  /usr/local/lib/python3.7/site-packages/cv2.so
+RUN apt-get --fix-missing update && apt-get --fix-broken install && apt-get install -y poppler-utils && apt-get install -y tesseract-ocr && \
+    apt-get install -y libtesseract-dev && apt-get install -y libleptonica-dev && ldconfig && apt install -y libsm6 libxext6 && apt install -y python-opencv
 
 RUN apt-get update && \
     apt-get install -y build-essential libzbar-dev
