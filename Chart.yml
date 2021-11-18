@@ -1,5 +1,0 @@
-apiVersion: v1
-name: carbon_footprint_app-jvd
-version: "0.1"
-appVersion: "1.1"
-description: This is a flask description

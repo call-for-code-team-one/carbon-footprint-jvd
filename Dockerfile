@@ -68,4 +68,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5000
 ENTRYPOINT [ "python3" ]
-CMD ["python", "manage.py", "start", "0.0.0.0:3000"]
+CMD ["app.py"]
