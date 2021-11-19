@@ -10,5 +10,7 @@ RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install zbar
 RUN venv/bin/pip install zbar-tools
 RUN venv/bin/pip install libzbar0
+RUN venv/bin/pip install pyzbar
 
 CMD . venv/bin/activate && exec python app.py
+
