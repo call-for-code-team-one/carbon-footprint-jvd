@@ -25,7 +25,7 @@ import os
 from geopy.geocoders import Nominatim
 import geopy.distance
 from pathlib import Path
-from pyzbar.pyzbar import decode
+#from pyzbar.pyzbar import decode
 from countryinfo import CountryInfo
 # Internal imports
 from db import init_db_command
@@ -74,7 +74,8 @@ except sqlite3.OperationalError:
 def load_user(user_id):
     return User.get(user_id)
 '''SUBFUNCTION'''
-
+#Disabled barcode decoder for current release due to package installation issue
+'''
 
 def BarcodeDecoder(image,user_location="Brussels,Belgium"):
     country_list=pd.read_excel(os.path.join(data_path,"country_code.xlsx"))
@@ -161,7 +162,7 @@ def BarcodeReader(image):
                 barcode_type=barcode.type
     return barcode_data,barcode_type
 
-
+'''
 '''-----------------------------
 D. App Core Functions 
 -----------------------------'''
