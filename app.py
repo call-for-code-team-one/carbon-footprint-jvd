@@ -151,10 +151,6 @@ def BarcodeReader(image):
             # Put the rectangle in image using
             # cv2 to heighlight the barcode
             # create  rectangleimage
-            '''cv2.rectangle(img, (x - 10, y - 10),
-                          (x + w + 10, y + h + 10),
-                          (255, 0, 0), 2)'''
-            #img1
 
             if barcode.data != "":
                 # Print the barcode data
