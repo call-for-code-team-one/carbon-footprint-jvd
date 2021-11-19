@@ -7,8 +7,6 @@ COPY . /app
 RUN python -m venv venv
 RUN venv/bin/pip install --upgrade pip
 RUN venv/bin/pip install -r requirements.txt
-RUN venv/bin/pip install zbar
-RUN venv/bin/pip install zbar-tools
 RUN venv/bin/pip install libzbar0
 RUN venv/bin/pip install pyzbar
 
