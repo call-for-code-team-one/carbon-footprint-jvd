@@ -28,8 +28,8 @@ var/
 *.egg
 
 # python virtual environment/compiled files
-venv/
-*.pyc
+#venv/
+#*.pyc
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
