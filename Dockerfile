@@ -3,13 +3,13 @@ MAINTAINER Joëlle Van Damme "joelle.van.damme@be.ey.com"
 
 WORKDIR /app
 COPY . /app
-ENV VIRTUAL_ENV=/venv
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/Scripts:$PATH"
+
+RUN python3 -m venv ./venv
 
 # Install dependencies:
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN . /venv/Scripts/activate && pip install -r requirements.txt
 
 ENTRYPOINT [ "python3" ]
-CMD ["app.py"]
+#CMD ["app.py"]
+CMD . /venv/Scripts/activate && exec python app.py
