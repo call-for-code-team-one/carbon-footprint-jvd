@@ -8,6 +8,8 @@ Main features of the app:
 * Deployed in couple of lines of code
 * Able to calculate Carbon Footprint based on questionaire
 * Integrates Barcode Scanner to define country of origin of products
+
+The detailed presentation and the link to the demo video can be found in the powerpoint, in the CallForCodePresentation.zip file attached to this repo
 # Structure:
 
 The code is structured as follows:
