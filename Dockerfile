@@ -8,7 +8,7 @@ RUN python3 -m venv ./venv
 
 # Install dependencies:
 COPY requirements.txt .
-RUN ./venv/Scripts/activate && pip install -r requirements.txt
+RUN . /venv/Scripts/activate && pip install -r requirements.txt
 
 ENTRYPOINT [ "python3" ]
 #CMD ["app.py"]
