@@ -5,12 +5,11 @@ WORKDIR /app
 COPY . /app
 ENV VIRTUAL_ENV=/venv
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="$VIRTUAL_ENV/Scripts:$PATH"
 
 # Install dependencies:
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN pip install -r requirements.txt
 ENTRYPOINT [ "python3" ]
 CMD ["app.py"]
